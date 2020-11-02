@@ -10,7 +10,7 @@ from lib.data import video
 parser = argparse.ArgumentParser(description='Process parameters.', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('--start_id', default=2000, type=int, help='starting scene index')
 parser.add_argument('--duration', default=120, type=int, help='scene duration')
-parser.add_argument('--disk_path', default="/mnt/netdisk/data/video/", help='the path to save the dataset')
+parser.add_argument('--disk_path', default="/content/TecoGAN/TrainingDataPath", help='the path to save the dataset')
 parser.add_argument('--summary_dir', default="", help='the path to save the log')
 parser.add_argument('--REMOVE', action='store_true', help='whether to remove the original video file after data preparation')
 parser.add_argument('--TEST', action='store_true', help='verify video links, save information in log, no real video downloading!')
@@ -18,7 +18,7 @@ parser.add_argument('--TEST', action='store_true', help='verify video links, sav
 Flags = parser.parse_args()
 
 if Flags.summary_dir == "":
-    Flags.summary_dir = os.path.join(Flags.disk_path, "log/")
+    Flags.summary_dir = os.path.join(Flags.disk_path, "/content/TecoGAN/TrainingDataPath/log")
 os.path.isdir(Flags.disk_path) or os.makedirs(Flags.disk_path)
 os.path.isdir(Flags.summary_dir) or os.makedirs(Flags.summary_dir)
 
