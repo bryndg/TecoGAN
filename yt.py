@@ -1,8 +1,8 @@
 from __future__ import unicode_literals
 from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 
-import youtube_dl
 import os
+import youtube_dl
 import sys
 import datetime
 
@@ -36,10 +36,13 @@ link = {
 'https://www.youtube.com/watch?v=o8Qrv0dTYAU': 'P27',
 }
 
+path="/content/TecoGAN/videos/"
+os.path.isdir(path) or os.makedirs(path)
 for (k, v) in link.items():
+  os.path.isdir(os.path.join(path,v)) or os.makedirs(os.path.join(path,v))
   ydl_opts = {
     'format': 'bestvideo/best',
-    'outtmpl': os.path.join('/content/TecoGAN/videos',  v + '/%(title)s.%(ext)s',
+    'outtmpl': ('/content/TecoGAN/videos/',  v  ,'/%(title)s.%(ext)s')
   }
   with youtube_dl.YoutubeDL(ydl_opts) as ydl:
     ydl.download([k])
