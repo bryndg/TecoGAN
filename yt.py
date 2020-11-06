@@ -40,12 +40,28 @@ path="/content/TecoGAN/videos/"
 os.path.isdir(path) or os.makedirs(path)
 for (k, v) in link.items():
   os.path.isdir(os.path.join(path,v)) or os.makedirs(os.path.join(path,v))
+  dir_out='/content/TecoGAN/videos/'+v+'.webm'
   ydl_opts = {
     'format': 'bestvideo/best',
-    'outtmpl': ('/content/TecoGAN/videos/',  v  ,'/%(title)s.%(ext)s')
+    'outtmpl': (dir_out)
   }
   with youtube_dl.YoutubeDL(ydl_opts) as ydl:
     ydl.download([k])
     print(k)
-    ffmpeg_extract_subclip("/content/TecoGAN/videos/P1/Landscapes - Volume 4K (UHD).webm",65, 70, targetname="/content/TecoGAN/videos/P1/1/2000.webm") 
-    ffmpeg_extract_subclip("/content/TecoGAN/videos/P2/Panasonic 4K World - Rio de Janeiro, Brazil.webm",65, 70, targetname="/content/TecoGAN/videos/P2/1/2002.webm") 
+    dir_target='/content/TecoGAN/fragmento/'+v+'.'
+    os.path.isdir(dir_target) or os.makedirs(dir_target)
+
+  ffmpeg_extract_subclip(dir_out,5, 10, targetname=dir_target+'1.webm') 
+  ffmpeg_extract_subclip(dir_out,11, 16, targetname=dir_target+'2.webm') 
+  ffmpeg_extract_subclip(dir_out,21, 27, targetname=dir_target+'3.webm') 
+  ffmpeg_extract_subclip(dir_out,28, 33, targetname=dir_target+'4.webm') 
+  ffmpeg_extract_subclip(dir_out,34, 39, targetname=dir_target+'5.webm') 
+  ffmpeg_extract_subclip(dir_out,40, 45, targetname=dir_target+'6.webm') 
+  ffmpeg_extract_subclip(dir_out,46, 51, targetname=dir_target+'7.webm') 
+  ffmpeg_extract_subclip(dir_out,52, 57, targetname=dir_target+'8.webm') 
+  ffmpeg_extract_subclip(dir_out,58, 63, targetname=dir_target+'9.webm') 
+  ffmpeg_extract_subclip(dir_out,64, 69, targetname=dir_target+'10.webm') 
+  ffmpeg_extract_subclip(dir_out,70, 75, targetname=dir_target+'11.webm') 
+  ffmpeg_extract_subclip(dir_out,65, 70, targetname=dir_target+'12.webm') 
+  from shutil import rmtree
+  rmtree('/content/TecoGAN/videos/'+v)
